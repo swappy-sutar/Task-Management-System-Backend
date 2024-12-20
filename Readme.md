@@ -21,20 +21,20 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
   - Mongoose
 - **Email Service**: Nodemailer (for sending email notifications)
 
-## Setup
+## Setup 
 
-1. Clone the repository:
+### 1. Clone the repository:
 
 - Clone the repository to your local machine: [Clone Repo](https://github.com/swappy-sutar/Task-Management-System-Backend.git)
 - git clone
 - cd task-management-system/
 
-2. Install dependencies:
+### 2. Install dependencies:
 
 - cd task-management-system/Backend
 - npm install
 
-3. Configuration:
+### 3. Configuration:
 
 - Create a .env file in the root of the Backend directory.
 - Add the following variables:
@@ -45,18 +45,18 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
   - MAIL_PASSWORD=
   - JWT_SECRET_KEY=Swappy
 
-4. Database Setup:
+### 4. Database Setup:
 
 - Ensure MongoDB is running locally or set up a remote MongoDB instance.
 - Run database migrations if any (e.g., for database schema updates or initial setup)
 
-5. Authentication Setup:
+### 5. Authentication Setup:
 
 - Integrate a secure authentication mechanism.
 - Install necessary packages for handling user registration, login, and authentication (e.g., jsonwebtoken for token handling).
 - Configure authentication in app.js or a dedicated authentication middleware module.
 
-6. Starting the Server:
+### 6. Starting the Server:
 
 - Start the Express server
 - npm run dev
