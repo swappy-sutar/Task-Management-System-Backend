@@ -1,0 +1,8 @@
+PORT=4000
+DATABASE_URL=mongodb://localhost:27017/Task_Management_System
+
+JWT_SECRET_KEY=TaskBySwappy
+
+MAIL_HOST=smtp.gmail.com
+MAIL_USER=
+MAIL_PASSWORD=
