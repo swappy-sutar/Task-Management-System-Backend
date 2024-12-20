@@ -60,3 +60,8 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 
 - Start the Express server
 - npm run dev
+
+
+## Access Swagger UI:
+- Open a web browser and navigate to http://localhost:4000/api-docs
+- Swagger UI will be displayed, allowing you to interact with the API endpoints and view documentation.
