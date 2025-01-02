@@ -32,19 +32,20 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 
 ### 2. Install dependencies:
 ```bash
-- cd task-management-system/Backend
-- npm install
+ cd task-management-system/Backend
+ npm install
 ```
+
 ### 3. Configuration:
-```bash
 - Create a .env file in the root of the Backend directory.
 - Add the following variables:
-  - PORT=4000
-  - DATABASE_URL="mongodb://localhost:27017/Task_Management_System"
-  - MAIL_HOST=smtp.gmail.com
-  - MAIL_USER=
-  - MAIL_PASSWORD=
-  - JWT_SECRET_KEY=Swappy
+```bash
+   PORT=4000
+   DATABASE_URL="mongodb://localhost:27017/Task_Management_System"
+   MAIL_HOST=smtp.gmail.com
+   MAIL_USER=
+   MAIL_PASSWORD=
+   JWT_SECRET_KEY=Swappy
 ```
 ### 4. Database Setup:
 
@@ -60,8 +61,9 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 ### 6. Starting the Server:
 
 - Start the Express server
-- npm run dev
-
+  ```bash
+   npm run dev
+  ```
 
 ## Access Swagger UI:
 - Open a web browser and navigate to http://localhost:4000/api-docs
