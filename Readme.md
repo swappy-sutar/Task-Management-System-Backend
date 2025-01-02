@@ -26,8 +26,8 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 ### 1. Clone the repository:
 - Clone the repository to your local machine: 
 ```bash
-- git clone https://github.com/swappy-sutar/Task-Management-System-Backend.git
-- cd task-management-system/
+ git clone https://github.com/swappy-sutar/Task-Management-System-Backend.git
+ cd task-management-system/
 ```
 
 ### 2. Install dependencies:
