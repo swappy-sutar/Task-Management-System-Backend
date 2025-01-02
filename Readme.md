@@ -24,18 +24,19 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 ## Setup 
 
 ### 1. Clone the repository:
-
+```bash
 - Clone the repository to your local machine: [Clone Repo](https://github.com/swappy-sutar/Task-Management-System-Backend.git)
 - git clone
 - cd task-management-system/
+```
 
 ### 2. Install dependencies:
-
+```bash
 - cd task-management-system/Backend
 - npm install
-
+```
 ### 3. Configuration:
-
+```bash
 - Create a .env file in the root of the Backend directory.
 - Add the following variables:
   - PORT=4000
@@ -44,7 +45,7 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
   - MAIL_USER=
   - MAIL_PASSWORD=
   - JWT_SECRET_KEY=Swappy
-
+```
 ### 4. Database Setup:
 
 - Ensure MongoDB is running locally or set up a remote MongoDB instance.
