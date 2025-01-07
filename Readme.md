@@ -21,30 +21,33 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
   - Mongoose
 - **Email Service**: Nodemailer (for sending email notifications)
 
-## Setup 
+## Setup
 
 ### 1. Clone the repository:
 
-- Clone the repository to your local machine: [Clone Repo](https://github.com/swappy-sutar/Task-Management-System-Backend.git)
-- git clone
-- cd task-management-system/
+- Clone the repository to your local machine:
+```bash
+  git clone https://github.com/swappy-sutar/Task-Management-System-Backend.git
+```
 
 ### 2. Install dependencies:
-
-- cd task-management-system/Backend
-- npm install
+```bash
+  cd task-management-system/Backend
+  npm install
+```
 
 ### 3. Configuration:
 
 - Create a .env file in the root of the Backend directory.
 - Add the following variables:
-  - PORT=4000
-  - DATABASE_URL="mongodb://localhost:27017/Task_Management_System"
-  - MAIL_HOST=smtp.gmail.com
-  - MAIL_USER=
-  - MAIL_PASSWORD=
-  - JWT_SECRET_KEY=Swappy
-
+```bash
+  PORT=4000
+  DATABASE_URL="mongodb://localhost:27017/Task_Management_System"
+  MAIL_HOST=smtp.gmail.com
+  MAIL_USER=
+  MAIL_PASSWORD=
+  JWT_SECRET_KEY=Swappy
+```
 ### 4. Database Setup:
 
 - Ensure MongoDB is running locally or set up a remote MongoDB instance.
@@ -57,11 +60,12 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 - Configure authentication in app.js or a dedicated authentication middleware module.
 
 ### 6. Starting the Server:
-
-- Start the Express server
-- npm run dev
-
+```bash
+  Start the Express server
+  npm run dev
+```
 
 ## Access Swagger UI:
+
 - Open a web browser and navigate to http://localhost:4000/api-docs
 - Swagger UI will be displayed, allowing you to interact with the API endpoints and view documentation.
