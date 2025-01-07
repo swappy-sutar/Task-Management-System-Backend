@@ -7,13 +7,13 @@ servers:
   - url: "http://localhost:4000/api/v1"
 components:
   securitySchemes:
-    AuthToken:
+    BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: "JWT"
   schemas:
     Task:
-      type: "object"
+      type: object
       required:
         - title
         - description
@@ -22,33 +22,32 @@ components:
         - employeeId
       properties:
         id:
-          type: "string"
-          format: "uuid"
+          type: string
+          format: uuid
         title:
-          type: "string"
+          type: string
         description:
-          type: "string"
+          type: string
         status:
-          type: "string"
+          type: string
           enum:
-            - "Pending"
-            - "In Progress"
-            - "Completed"
+            - Pending
+            - In Progress
+            - Completed
         dueDate:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
         employeeId:
-          type: "string"
+          type: string
         createdAt:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
         updatedAt:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
     User:
-      type: "object"
+      type: object
       required:
-        - id
         - firstname
         - lastname
         - email
@@ -60,55 +59,54 @@ components:
         - otp
       properties:
         id:
-          type: "string"
-          format: "uuid"
+          type: string
+          format: uuid
         firstname:
-          type: "string"
+          type: string
         lastname:
-          type: "string"
+          type: string
         email:
-          type: "string"
+          type: string
         password:
-          type: "string"
+          type: string
         phoneNumber:
-          type: "string"
+          type: string
         role:
-          type: "string"
+          type: string
           enum:
-            - "Admin"
-            - "Manager"
-            - "Team Leader"
-            - "Employee"
+            - Admin
+            - Manager
+            - Team Leader
+            - Employee
         department:
-          type: "string"
+          type: string
         position:
-          type: "string"
+          type: string
         otp:
-          type: "string"
+          type: string
         createdAt:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
         updatedAt:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
     OTP:
-      type: "object"
+      type: object
       required:
         - email
         - otp
       properties:
         email:
-          type: "string"
+          type: string
         otp:
-          type: "string"
+          type: string
         createdAt:
-          type: "string"
-          format: "date-time"
+          type: string
+          format: date-time
         expiresIn:
-          type: "integer"
-          format: "int32"
+          type: integer
+          format: int32
           description: "OTP expiration time in seconds (5 minutes)"
-
 paths:
   /auth/send-OTP:
     post:
@@ -121,27 +119,127 @@ paths:
         content:
           application/json:
             schema:
-              type: "object"
+              type: object
               properties:
                 email:
-                  type: "string"
+                  type: string
       responses:
         200:
           description: "OTP sent successfully"
           content:
             application/json:
               schema:
-                type: "object"
+                type: object
                 properties:
                   success:
-                    type: "boolean"
+                    type: boolean
                   message:
-                    type: "string"
+                    type: string
         400:
           description: "Invalid request"
         500:
           description: "Internal Server Error"
-
+  /auth/signup:
+    post:
+      summary: "User signup"
+      tags: ["Auth"]
+      operationId: "signup"
+      requestBody:
+        description: "SignUp user details"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                confirmPassword:
+                  type: string
+                phoneNumber:
+                  type: string
+                role:
+                  type: string
+                  enum: [Admin, Manager, Team Leader, Employee]
+                department:
+                  type: string
+                position:
+                  type: string
+                otp:
+                  type: string
+      responses:
+        201:
+          description: "User registered successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        400:
+          description: "Validation error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        500:
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+  /auth/login:
+    post:
+      summary: "User login"
+      tags: ["Auth"]
+      operationId: "login"
+      requestBody:
+        description: "User login credentials"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: "User logged in successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token:
+                    type: string
+        400:
+          description: "Invalid login credentials"
+        500:
+          description: "Internal Server Error"
   /task/create-task:
     post:
       summary: "Add a new task"
@@ -155,21 +253,20 @@ paths:
         content:
           application/json:
             schema:
-              type: "object"
+              type: object
               properties:
                 title:
-                  type: "string"
+                  type: string
                 description:
-                  type: "string"
+                  type: string
                 status:
-                  type: "string"
-                  enum:
-                    - "Pending"
-                    - "In Progress"
-                    - "Completed"
+                  type: string
+                  enum: [Pending, In Progress, Completed]
                 dueDate:
-                  type: "string"
-                  format: "date-time"
+                  type: string
+                  format: date-time
+                employeeId:
+                  type: string
       responses:
         201:
           description: "Task successfully created"
@@ -183,7 +280,6 @@ paths:
           description: "Employee not found"
         500:
           description: "Internal Server Error"
-
   /task/update-task:
     put:
       summary: "Update an existing task"
@@ -197,23 +293,20 @@ paths:
         content:
           application/json:
             schema:
-              type: "object"
+              type: object
               properties:
                 id:
-                  type: "string"
+                  type: string
                 title:
-                  type: "string"
+                  type: string
                 description:
-                  type: "string"
+                  type: string
                 status:
-                  type: "string"
-                  enum:
-                    - "Pending"
-                    - "In Progress"
-                    - "Completed"
+                  type: string
+                  enum: [Pending, In Progress, Completed]
                 dueDate:
-                  type: "string"
-                  format: "date-time"
+                  type: string
+                  format: date-time
       responses:
         200:
           description: "Task successfully updated"
@@ -227,7 +320,6 @@ paths:
           description: "Task not found"
         500:
           description: "Internal Server Error"
-
   /task/delete-task/{taskId}:
     delete:
       summary: "Delete a task"
@@ -236,11 +328,11 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - name: "taskId"
-          in: "path"
+        - name: taskId
+          in: path
           required: true
           schema:
-            type: "string"
+            type: string
       responses:
         200:
           description: "Task successfully deleted"
@@ -248,8 +340,7 @@ paths:
           description: "Task not found"
         500:
           description: "Internal Server Error"
-
-  /task/get-all-task:
+  /task/get-all-tasks:
     get:
       summary: "Retrieve all tasks"
       tags: ["Tasks"]
@@ -262,12 +353,11 @@ paths:
           content:
             application/json:
               schema:
-                type: "array"
+                type: array
                 items:
                   $ref: '#/components/schemas/Task'
         500:
           description: "Internal Server Error"
-
   /task/get-task/{id}:
     get:
       summary: "Retrieve a task by ID"
@@ -276,11 +366,11 @@ paths:
       security:
         - BearerAuth: []
       parameters:
-        - name: "id"
-          in: "path"
+        - name: id
+          in: path
           required: true
           schema:
-            type: "string"
+            type: string
       responses:
         200:
           description: "Task retrieved successfully"
@@ -292,7 +382,6 @@ paths:
           description: "Task not found"
         500:
           description: "Internal Server Error"
-
   /task/get-task-status:
     get:
       summary: "Retrieve task statuses"
@@ -306,75 +395,9 @@ paths:
           content:
             application/json:
               schema:
-                type: "array"
+                type: array
                 items:
-                  type: "string"
-                  enum:
-                    - "Pending"
-                    - "In Progress"
-                    - "Completed"
-        500:
-          description: "Internal Server Error"
-
-  /auth/login:
-    post:
-      summary: "User login"
-      tags: ["Auth"]
-      operationId: "login"
-      requestBody:
-        description: "User login credentials"
-        required: true
-        content:
-          application/json:
-            schema:
-              type: "object"
-              properties:
-                email:
-                  type: "string"
-                password:
-                  type: "string"
-      responses:
-        200:
-          description: "User logged in successfully"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                properties:
-                  success:
-                    type: "boolean"
-                  token:
-                    type: "string"
-        400:
-          description: "Invalid login credentials"
-        500:
-          description: "Internal Server Error"
-
-  /auth/signup:
-    post:
-      summary: "User signup"
-      tags: ["Auth"]
-      operationId: "signup"
-      requestBody:
-        description: "User signup details"
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        201:
-          description: "User registered successfully"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                properties:
-                  success:
-                    type: "boolean"
-                  message:
-                    type: "string"
-        400:
-          description: "Validation error"
+                  type: string
+                  enum: [Pending, In Progress, Completed]
         500:
           description: "Internal Server Error"
