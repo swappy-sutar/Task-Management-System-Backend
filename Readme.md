@@ -14,12 +14,10 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 
 ## Technologies Used
 
-- **Backend**:
-  - Node.js (v20.12.2)
-  - Express.js
-  - MongoDB
-  - Mongoose
-- **Email Service**: Nodemailer (for sending email notifications)
+-  **Node.js (v20.12.2)**: Used to handle server-side logic and processing.
+-  **Express.js**: A robust framework for building APIs and managing server routes.
+-  **MongoDB**: A NoSQL database that stores data in a flexible, JSON-like format, ideal for scalable applications.
+-  **Email Service**: Nodemailer (for sending email notifications)
 
 ## Setup
 
@@ -37,7 +35,6 @@ This project is a Task Management System built with Node.js, MongoDB, and Expres
 ```
 
 ### 3. Configuration:
-
 - Create a .env file in the root of the Backend directory.
 - Add the following variables:
 ```bash
