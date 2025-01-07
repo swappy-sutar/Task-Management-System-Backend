@@ -25,8 +25,6 @@ const auth = async (req, res, next) => {
         lastname: decoded.lastname,
         email: decoded.email,
         role: decoded.role,
-        iat: decoded.iat,
-        exp: decoded.exp,
       };
 
       next();
