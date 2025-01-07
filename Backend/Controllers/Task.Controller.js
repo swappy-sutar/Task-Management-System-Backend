@@ -12,7 +12,6 @@ const addTask = async (req, res) => {
         message: "Please fill all the fields",
       });
     }
-    console.log(title, description, dueDate, employeeId );
     
     const employee = await User.findOne({ employeeId });
 
@@ -39,7 +38,7 @@ const addTask = async (req, res) => {
       select: "firstname lastname email role",
     });
 
-    const email = employee.email;
+    const email = employee.email.toLowerCase();
     const mailRes = await mailSender(
       email,
       "You have been assigned a new task - Task-Management",
@@ -60,7 +59,7 @@ const addTask = async (req, res) => {
       `
     );
 
-    const emailMessage = mailRes?.accepted?.includes(email)
+    const emailMessage = mailRes?.accepted?.includes(email.toLowerCase())
       ? "Task created successfully, and email sent to the employee."
       : "Task created successfully, but email could not be sent.";
 

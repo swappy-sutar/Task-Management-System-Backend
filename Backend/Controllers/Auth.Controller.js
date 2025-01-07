@@ -16,7 +16,7 @@ const sendOTP = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase() });
 
     if (user) {
       return res.status(400).json({
@@ -60,7 +60,7 @@ const sendOTP = async (req, res) => {
       `
     );
 
-    if (mailRes && mailRes.accepted && mailRes.accepted.includes(email)) {
+    if (mailRes && mailRes.accepted && mailRes.accepted.includes(email.toLowerCase())) {
       return res.status(201).json({
         success: true,
         message: "OTP sent successfully. Please check your email.",
@@ -163,7 +163,7 @@ const signup = async (req, res) => {
     const user = await User.create({
       firstname: firstname,
       lastname: lastname,
-      email: email,
+      email: email.toLowerCase(),
       password: hashedPassword,
       phoneNumber: phoneNumber,
       role: role,
@@ -197,7 +197,7 @@ const login = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase()  });
     if (!user) {
       return res.status(404).json({
         success: false,
